@@ -31,8 +31,8 @@ func finalizer(a *adapter) {
 }
 
 // NewAdapter is the constructor for adapter.
-func NewAdapter(Sessionvar r.QueryExecutor) persist.Adapter {
-	a := &adapter{session: Sessionvar, database: a.database, table: a.table}
+func NewAdapter(Sessionvar r.QueryExecutor, database, table string) persist.Adapter {
+	a := &adapter{session: Sessionvar, database: database, table: table}
 	a.open()
 	// Call the destructor when the object is released.
 	runtime.SetFinalizer(a, finalizer)
